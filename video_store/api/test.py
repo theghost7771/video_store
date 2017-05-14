@@ -47,9 +47,12 @@ class VideoTests(APITestCase):
         self.assertEqual(len(response.data['results']), 1)
 
         # rental, just add 'rent/' to the entity url
-        rental_url = response.data['results'][0]['url'] + 'rent/'
+        video_url = response.data['results'][0]['url']
+        rental_url = video_url + 'rent/'
         response = self.client.post(rental_url)
+        # success rental
         self.assertTrue(response.data['success'])
+        # check video is not aviable now
         video = Video.objects.get(title='Title 2')
         self.assertFalse(video.aviable)
 
@@ -57,11 +60,13 @@ class VideoTests(APITestCase):
         self.assertEqual(self.client.post(rental_url).data, {"error": "Can't rent not aviable Video."})
 
         response = self.client.get('/api/v1/videos/?search=title+2')
-        # return, just add 'return/' to the entity url
-        return_url = response.data['results'][0]['url'] + 'return/'
+        video_url = response.data['results'][0]['url']
+        # return video, just add 'return/' to the entity url
+        return_url = video_url + 'return/'
         response = self.client.post(return_url)
-
+        # success returning
         self.assertTrue(response.data['success'])
+        # check video is aviable now
         video = Video.objects.get(title='Title 2')
         self.assertTrue(video.aviable)
 
