@@ -45,7 +45,7 @@ curl http://localhost:8000/api/v1/videos/ --header "Authorization: Token 7753543
 ```
 ## Search by title ##
 ```
-curl http://@localhost:8000/api/v1/videos/?search=title+1 --header "Authorization: Token 77535431bf7ed1bfdc38686c571d10b640543eba"
+curl http://localhost:8000/api/v1/videos/?search=title+1 --header "Authorization: Token 77535431bf7ed1bfdc38686c571d10b640543eba"
 {
     "next": null,
     "previous": null,
