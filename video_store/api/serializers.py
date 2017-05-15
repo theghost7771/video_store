@@ -20,5 +20,5 @@ class VideoSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Video
-        fields = ('title', 'aviable', 'url', 'id',)
-        extra_kwargs = {'aviable': {'read_only': True}}
+        fields = ('title', 'is_available', 'url', 'id',)
+        extra_kwargs = {'is_available': {'read_only': True}}

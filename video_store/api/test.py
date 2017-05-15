@@ -52,12 +52,12 @@ class VideoTests(APITestCase):
         response = self.client.post(rental_url)
         # success rental
         self.assertTrue(response.data['success'])
-        # check video is not aviable now
+        # check video is not available now
         video = Video.objects.get(title='Title 2')
-        self.assertFalse(video.aviable)
+        self.assertFalse(video.is_available)
 
         # secondary rental is failed with error
-        self.assertEqual(self.client.post(rental_url).data, {"error": "Can't rent not aviable Video."})
+        self.assertEqual(self.client.post(rental_url).data, {"error": "Can't rent not available Video."})
 
         response = self.client.get('/api/v1/videos/?search=title+2')
         video_url = response.data['results'][0]['url']
@@ -66,9 +66,9 @@ class VideoTests(APITestCase):
         response = self.client.post(return_url)
         # success returning
         self.assertTrue(response.data['success'])
-        # check video is aviable now
+        # check video is available now
         video = Video.objects.get(title='Title 2')
-        self.assertTrue(video.aviable)
+        self.assertTrue(video.is_available)
 
         # secondary return is failed with error
         self.assertEqual(self.client.post(return_url).data, {"error": "Can't return not rented Video."})

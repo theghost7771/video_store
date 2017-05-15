@@ -13,9 +13,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Video',
             fields=[
-                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True, verbose_name='ID')),
-                ('title', models.CharField(max_length=500, verbose_name='Title')),
-                ('aviable', models.BooleanField(default=True, verbose_name='Is aviable')),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('title', models.CharField(verbose_name='Title', max_length=500)),
+                ('is_available', models.BooleanField(verbose_name='Is available', default=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
             ],
         ),

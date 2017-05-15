@@ -23,13 +23,13 @@ class VideoViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Ge
     @detail_route(methods=['post'], url_path='rent')
     def rent_start(self, request, *args, **kwargs):
         video = self.get_object()
-        if not video.aviable:
-            raise serializers.ValidationError({'error': "Can't rent not aviable Video."})
+        if not video.is_available:
+            raise serializers.ValidationError({'error': "Can't rent not available Video."})
         return Response({"success": video.rent_start()})
 
     @detail_route(methods=['post'], url_path='return')
     def rent_end(self, request, *args, **kwargs):
         video = self.get_object()
-        if video.aviable:
+        if video.is_available:
             raise serializers.ValidationError({'error': "Can't return not rented Video."})
         return Response({"success": video.rent_end()})
