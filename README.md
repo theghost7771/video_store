@@ -84,6 +84,6 @@ curl http://localhost:8000/api/v1/videos/1/rent/ -d "" --header "Authorization: 
 ```
 ## Return ##
 ```
-curl http://localhost:8000/api/v1/videos/1/rent/ -d "" --header "Authorization: Token 77535431bf7ed1bfdc38686c571d10b640543eba"
+curl http://localhost:8000/api/v1/videos/1/return/ -d "" --header "Authorization: Token 77535431bf7ed1bfdc38686c571d10b640543eba"
 {"success":true}
 ```
