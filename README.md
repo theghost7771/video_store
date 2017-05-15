@@ -12,7 +12,7 @@ pip install -r requirements/base.txt
 
 
 
-## Authorization with token ##
+## Authorization to get token ##
 ```
 curl http://localhost:8000/api/v1/api-token-auth/ -d "username=admin;password=password"
 {"token":"77535431bf7ed1bfdc38686c571d10b640543eba"}
